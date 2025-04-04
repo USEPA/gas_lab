@@ -13,9 +13,9 @@ gc.2021 <- get_gc(paths = paths)
 
 # CHECK FOR DUPLICATES
 # SG211109 in Air_2021_10_08_FID_ECD_STD_UNK.xlsx, T_21_11_01_ECD_FID_TCD_STD_UNK.xlsx
-# delete for now
+# Trap per data sheets.  delete for now
 gc.2021 %>% janitor::get_dupes(sample) %>% print(n=Inf)
-gc.2021 <- gc.2021 %>% filter(!(sample == "SG211109"))
+
 
 # DEAL WITH RERUNS
 # A few samples were flagged during first run, but were subsequently rerun.
@@ -28,7 +28,7 @@ gc.2021 <- gc.2021 %>%
 
 # WRITE FILES------------------------
 # Write consolidated data back to LabLan
-write.csv(gc.2021, 
+write.csv(gc.2021,
           file = paste0("L:/Lab/Lablan/GHG/GC/2021Data/gcMasterFile2021",
                         "updated", Sys.Date(),
                         ".csv"),

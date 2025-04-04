@@ -30,7 +30,7 @@ gc.2022 <- gc.2022 %>%
 
 # WRITE FILES------------------------
 # Write consolidated data back to LabLan
-write.csv(gc.2022, 
+write.csv(gc.2022,
             file = paste0("L:/Lab/Lablan/GHG/GC/2022Data/gcMasterFile2022",
                          "updated", Sys.Date(),
                          ".csv"),
