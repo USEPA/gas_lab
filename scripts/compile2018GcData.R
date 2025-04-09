@@ -1,9 +1,3 @@
-# LIBRARIES---------------
-# Run from masterLibrary.R if running script in project.
-library(tidyverse)
-library(readxl)
-library(janitor)
-library(stringi)
 
 # READ GC DATA----------------
 paths <-  "L:/Lab/Lablan/GHG/GC/2018Data"
@@ -35,3 +29,9 @@ write.csv(gc.2018,
                          ".csv"),
             row.names = FALSE)
 
+# write consolidated data to SuRGE repo
+write.csv(gc.2018,
+          file = paste0("C:/Users/JBEAULIE/OneDrive - Environmental Protection Agency (EPA)/gitRepository/SuRGE/SuRGE_Sharepoint/data/gases/2018Data/",
+                        "gcMasterFile2018updated", Sys.Date(),
+                        ".csv"),
+          row.names = FALSE)

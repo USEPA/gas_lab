@@ -1,9 +1,3 @@
-# LIBRARIES---------------
-# Run from masterLibrary.R if running script in project.
-library(tidyverse)
-library(readxl)
-library(janitor)
-library(stringi)
 
 # READ GC DATA----------------
 paths <-  "L:/Lab/Lablan/GHG/GC/2021Data"
@@ -12,8 +6,7 @@ paths <-  "L:/Lab/Lablan/GHG/GC/2021Data"
 gc.2021 <- get_gc(paths = paths) 
 
 # CHECK FOR DUPLICATES
-# SG211109 in Air_2021_10_08_FID_ECD_STD_UNK.xlsx, T_21_11_01_ECD_FID_TCD_STD_UNK.xlsx
-# Trap per data sheets.  delete for now
+# none
 gc.2021 %>% janitor::get_dupes(sample) %>% print(n=Inf)
 
 
@@ -35,5 +28,10 @@ write.csv(gc.2021,
           row.names = FALSE)
 
 
-
+# write consolidated data to SuRGE repo
+write.csv(gc.2021,
+          file = paste0("C:/Users/JBEAULIE/OneDrive - Environmental Protection Agency (EPA)/gitRepository/SuRGE/SuRGE_Sharepoint/data/gases/2021Data/",
+                        "gcMasterFile2021updated", Sys.Date(),
+                        ".csv"),
+          row.names = FALSE)
 

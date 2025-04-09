@@ -1,9 +1,3 @@
-# LIBRARIES---------------
-# Run from masterLibrary.R if running script in project.
-library(tidyverse)
-library(readxl)
-library(janitor)
-library(stringi)
 
 # READ GC DATA----------------
 # Read individual files.
@@ -16,7 +10,8 @@ gc.2022 <- get_gc(paths = paths) # warnings are ok
 
 # CHECK FOR DUPLICATES
 # SG220153 repeated in 2022_08_11_dissolved gas.xlsx
-# strip out for now [4/1/25]
+# Duplicate exetainer sent to ADA in 2022 and 2023.
+# Air and DG samples with dups. Strip out. [4/1/25]
 gc.2022 %>% janitor::get_dupes(sample) %>% print(n=Inf)
 gc.2022 <- gc.2022 %>% filter(!(sample == "SG220153"))
 
@@ -36,3 +31,9 @@ write.csv(gc.2022,
                          ".csv"),
             row.names = FALSE)
 
+# write consolidated data to SuRGE repo
+write.csv(gc.2022,
+          file = paste0("C:/Users/JBEAULIE/OneDrive - Environmental Protection Agency (EPA)/gitRepository/SuRGE/SuRGE_Sharepoint/data/gases/2022Data/",
+                        "gcMasterFile2022updated", Sys.Date(),
+                        ".csv"),
+          row.names = FALSE)
